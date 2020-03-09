@@ -1,0 +1,3 @@
+install these libraries using pip:
+beautifulsoup4
+lxml
