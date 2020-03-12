@@ -1,32 +1,28 @@
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
-import datetime
-import json
 import requests
 
 # return a dictionary with site name and url
 def get_site_info():
-	return {'site': 'The Washington Times', 'url': 'https://www.washingtontimes.com/news/politics/'}
+	return {'site': 'ABC', 'url': 'https://abcnews.go.com/politics/'}
 
 # return a list of headline objects. You can choose how to represent headlines
 # but make sure your object can have url and title extracted from it by your 
 # other helper functions
 def get_headlines(soup):
-	return soup.find_all('h2', class_='article-headline')
+	return soup.find_all(True, class_='headlines-li')
 
 	
 # return the url for the article corresponding to this headline
 def get_headline_url(headline):
+	current_headline = headline.find('h1')
 	url = headline.find('a').get('href')
-	if url[0:4] != 'http':
-		url = urljoin('https://www.washingtontimes.com', url)
+	
 	return url
-
 
 # return the text of the headline object
 def get_headline_text(headline):
 	return headline.find('a').get_text()
-
 
 # return a dictionary for the article containing:
 # {
@@ -41,20 +37,17 @@ def process_headline(headline):
 	result['site'] = get_site_info()['site']
 	result['url'] = get_headline_url(headline)
 	result['title'] = get_headline_text(headline)
-	
-	# download article and parse html to get its text
 	article = requests.get(result['url']).content
 	soup_article = BeautifulSoup(article, 'lxml')
 
-	data = json.loads(soup_article.find('script', type='application/ld+json').text)
-	result['time'] = data['datePublished']
-	
-	soup_article.find('div',class_='permission').decompose()
-	body = soup_article.find_all('div', class_='bigtext')[0]
+	body = soup_article.find_all('div', class_='Article')[0]
 	paragraph_objs = body.find_all('p')
 	paragraph_texts = [p.get_text() for p in paragraph_objs]
-	
+	date = soup_article.find('meta', property="lastPublishedDate").get("content")
+
 	result['text'] = '\n\n'.join(paragraph_texts)
+	result['time'] = date
+
 	return result
 
 
