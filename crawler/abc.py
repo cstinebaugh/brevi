@@ -16,7 +16,7 @@ def get_headlines(soup):
 # return the url for the article corresponding to this headline
 def get_headline_url(headline):
 	current_headline = headline.find('h1')
-	url = headline.find('a').get('href')
+	url = current_headline.find('a').get('href')
 	
 	return url
 
