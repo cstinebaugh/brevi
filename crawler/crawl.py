@@ -3,10 +3,10 @@ from bs4 import BeautifulSoup
 import json
 import os
 
-import elpais_frontpage
+import elpais
 
 site_helpers = [
-	elpais_frontpage.functions
+	elpais.functions
 ]
 
 # crawl each site

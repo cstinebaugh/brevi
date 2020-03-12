@@ -27,6 +27,7 @@ def get_headline_text(headline):
 #   site:  site name (ie Huffington Post),
 #   url:   article url,
 #   title: article title,
+#	time:  article posted date,
 #   text:  article content
 # }
 def process_headline(headline):
