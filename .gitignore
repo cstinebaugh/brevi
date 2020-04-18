@@ -1,4 +1,4 @@
 *__pycache__
-crawler/articles
-crawler/env
+*/articles
+*/env
 *.pyc
