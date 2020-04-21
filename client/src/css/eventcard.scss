@@ -1,0 +1,111 @@
+.event-card {
+  border-radius: 8px;
+  background-color: #F1F3F5;
+  font-size: 14px;
+  display: flex;
+  margin-top: 12px;
+  margin-bottom: 18px;
+  box-shadow: 0 5px 11px rgba(33, 33, 33, 0.2);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 800px) {
+  .event-card { grid-template-columns: repeat(1, 1fr); }
+}
+
+.card-header {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.card-subheader {
+  color: #AAA9A5;
+  font-weight: 500;
+}
+
+.card-header-container {
+  display:flex;
+  justify-content: space-between;
+}
+
+button {
+  span {
+    font-size: 12px;
+  }
+}
+
+i {
+  color: #AAA9A5 !important;
+  cursor: pointer;
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  display:none;
+  width: 80px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -40px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  display: inline;
+  opacity: 1;
+}
+
+.article-chunk {
+  padding: 24px;
+}
+
+.left-header {
+  font-size: 18px;
+  font-weight: 500;
+  color: #167ffc;
+}
+
+.right-header {
+  font-size: 18px;
+  font-weight: 500;
+  color: #fd3259;
+}
+
+.bottom-link {
+  text-align: right;
+  color: #777777;
+  a {
+    color: #777777;
+  }
+}
